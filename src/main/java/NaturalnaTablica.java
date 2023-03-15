@@ -1,17 +1,18 @@
-public class NaturalnaTablica {
+public class NaturalnaTablica<T> {
 
     private static int iloscTablic;
-    private Object[] tab;
+    private T[] tab;
     private int wymiar;
+    private boolean isMoreThanTwo;
 
-    public NaturalnaTablica(int wymiar) {
-        this.tab = new Object[wymiar];
+    public NaturalnaTablica(T[] tab, int wymiar) {
+        this.tab = tab;
         this.wymiar = wymiar;
         iloscTablic++;
     }
 
-    public NaturalnaTablica() {
-        this.tab = new Object[5];
+    public NaturalnaTablica(T[] tab) {
+        this.tab = tab;
         this.wymiar = 5;
         iloscTablic++;
     }
@@ -32,10 +33,32 @@ public class NaturalnaTablica {
     }
 
     public void przedstawSie() {
-        System.out.println("Jestem obiektem klasy NaturalnaTablica. W tym momencie ilosc tablic wynosi " + iloscTablic);
+        System.out.println("Jestem obiektem klasy NaturalnaTablica.");
     }
 
     public int getWymiar() {
         return wymiar;
+    }
+
+    public boolean isMoreThanTwo() {
+        return isMoreThanTwo;
+    }
+
+    public String getTabElemsAsText() {
+        String tabElemsAsText = "";
+        for (int i = 0; i < this.tab.length; i++) {
+            tabElemsAsText = tabElemsAsText + this.tab[i].toString();
+        }
+        return tabElemsAsText;
+    }
+
+    @Override
+    public String toString() {
+        if (iloscTablic > 2) {
+            isMoreThanTwo = true;
+        } else {
+            isMoreThanTwo = false;
+        }
+        return String.valueOf(iloscTablic);
     }
 }
